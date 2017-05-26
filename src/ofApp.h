@@ -35,6 +35,9 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+        void createFullScreenQuad();
+    
+    
         ofxVoronoi chillax(ofxVoronoi _v);
         ofFbo vx_fbo;
         ofFbo sh_fbo;
@@ -42,5 +45,5 @@ class ofApp : public ofBaseApp{
     ofShader shady;
     ofShader thick;
     
-    ofPlanePrimitive plane;
+    ofVboMesh   m_fsQuadVbo;
 };

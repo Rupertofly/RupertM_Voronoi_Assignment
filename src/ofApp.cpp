@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofDisableArbTex();
-    ofEnableNormalizedTexCoords();
+    //ofEnableNormalizedTexCoords();
     
     gui = ofxDatGui(ofxDatGuiAnchor::TOP_RIGHT);
     gui.addTextInput("message", "# open frameworks #");
@@ -12,6 +12,7 @@ void ofApp::setup(){
     gui.addBreak();
     gui.addSlider("BPM", 50.0, 200, 90.0);
     gui.addSlider("thickness",0.0,50.0,20.0);
+    gui.addToggle("shader");
     gui.addFooter();
 
     ofSetWindowTitle("ofxVoronoi / example_basic");
@@ -21,11 +22,14 @@ void ofApp::setup(){
     
     int pointCount = 100;
     int seed = 33;
-    vx_fbo.allocate(ofGetWidth(), ofGetHeight());
+    vx_fbo.allocate(ofGetWidth(), ofGetHeight(),GL_RGBA);
     vx_fbo.begin();
-    sh_fbo.allocate(ofGetWidth(), ofGetHeight());
+    sh_fbo.allocate(ofGetWidth(), ofGetHeight(),GL_RGBA);
     sh_fbo.begin();
     ofClear(255,255,255);
+    sh_fbo.end();
+    vx_fbo.begin();
+    ofClear(255, 255, 255,0);
     vx_fbo.end();
     border_cell_no = floor(pointCount/10+10);
     centre.x = (ofGetWidth()/2);
@@ -45,9 +49,7 @@ void ofApp::setup(){
         points.push_back(cell.pt);
     }
     
-    plane.set(ofGetWidth(), ofGetHeight());
-    plane.setPosition(0, 0, 0);
-    plane.setResolution(2, 2);
+    createFullScreenQuad();
 }
 
 //--------------------------------------------------------------
@@ -60,7 +62,7 @@ void ofApp::draw(){
     ofSetColor(255);
     ofBackground(255);
     vx_fbo.begin();
-    ofClear(255, 255, 255);
+    ofClear(255, 255, 255,0);
     ofSetColor(255);
     ofBackground(255);
     ofVec3f centre = ofVec3f(ofGetWidth()/2,ofGetHeight()/2,0.0);
@@ -128,23 +130,23 @@ void ofApp::draw(){
     shady.load("shader");
     //sh_fbo.begin();
     //ofClear(255,255,255);
+    ofVec2f inverseResolution( 1.0f / (float)ofGetWidth(), 1.0f / (float)ofGetHeight() );
     shady.begin();
     shady.setUniformTexture("vor_tex", vx_fbo.getTexture(), 0);
-    shady.setUniform2f("resolution",float(ofGetWidth()), float(ofGetHeight()));
+    shady.setUniform2f("resolution",inverseResolution);
     ofSetColor(255);
-    plane.draw();
+    m_fsQuadVbo.draw();
     //ofRectangle(0, 0, ofGetWidth(), ofGetHeight());
     shady.end();
+    if (gui.getToggle("shader")->getChecked())  vx_fbo.draw(0,0);
     //sh_fbo.end();
     
-    /*
         // Draw cell poin
     voronoi.chillax(centre, border_cell_no, cols);
     sh_fbo.draw(0,0);
     ofSetColor(0);
     ofFill();
     ofDrawEllipse(cursor.x, cursor.y, 5, 5);
-    */
 }
 
 //--------------------------------------------------------------
@@ -236,4 +238,41 @@ void ofApp::gotMessage(ofMessage msg){
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
 }
+
+
+void ofApp::createFullScreenQuad()
+{
+    // -1.0 to +1.0 is the full viewport (screen) if you use these as vertices in your vertex shader
+    // (without multiplying by model, view, and projection matrices)
+    
+    ofVec3f vertices[4] =
+    {
+        ofVec3f(  1.0f,  1.0f, 0.0f ),
+        ofVec3f( -1.0f,  1.0f, 0.0f ),
+        ofVec3f(  1.0f, -1.0f, 0.0f ),
+        ofVec3f( -1.0f, -1.0f, 0.0f )
+    };
+    
+    ofIndexType indices[6] =
+    {
+        0, 1, 2,
+        2, 1, 3
+    };
+    
+    // Texture coordinates vary from 0.0 to 1.0 when they are in normalized format
+    // ofDisableArbTex() was called earlier set that we're using normalized texture coordinates
+    ofVec2f texCoords[4] =
+    {
+        ofVec2f( 1.0f, 0.0f ),
+        ofVec2f( 0.0f, 0.0f ),
+        ofVec2f( 1.0f, 1.0f ),
+        ofVec2f( 0.0f, 1.0f )
+    };
+    
+    m_fsQuadVbo.addVertices( vertices, 4 );
+    m_fsQuadVbo.addTexCoords( texCoords, 4 );
+    m_fsQuadVbo.addIndices( indices, 6 );
+}
+
+
 
