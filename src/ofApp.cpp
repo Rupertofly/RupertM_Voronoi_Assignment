@@ -145,12 +145,7 @@ void ofApp::draw(){
     }
 
     
-    ofRectangle bounds = voronoi.getBounds();
-    ofSetLineWidth(0);
-    ofNoFill();
-    ofSetColor(220);
-    //ofDrawRectangle(bounds);
-    float dis = ((ofGetHeight()-50)/2);
+        float dis = ((ofGetHeight()-50)/2);
     
     vector <ofxVoronoiCell> cells = voronoi.getCells();
 
