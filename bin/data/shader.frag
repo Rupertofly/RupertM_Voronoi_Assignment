@@ -2,8 +2,10 @@
 // outputs
 out vec4 outputColor;
 
-uniform sampler2D tex;
-uniform vec2 resolution;
+uniform sampler2D inTex;
+uniform sampler2D alpha;
+uniform vec2 iResolution;
+uniform int iDist;
 
 in vec2 vTexCoord;
 
@@ -13,38 +15,33 @@ in vec2 vTexCoord;
 //    vec4 color;
 //} vertex;
 
-void main (void)
-{
-    vec2 uv = vTexCoord;
-    vec2 pixel = resolution;
-    
-    vec4 texo = texture(tex,uv);
-    vec4 col;
-//    outputColor = texture(vor_tex,uv);
-    float bval = 0.0;
-    if (texo.rgb != vec3(1.0)){
-        for (float w = -2.0; w<= 0.0;w = w + 1.0)
-        {
-            for (float h= -2.0; h<=0.0;h = h + 1.0)
-            {
-                //vec2 disp = vec2(w*pixel.x,h*pixel.y);
-                vec2 pos = vec2(uv.x+(w*pixel.x),uv.y+(h*pixel.y));
-                vec4 pxl = texture(tex,pos);
-                if (pxl.rgb == vec3(1.0)) bval++;
-            }
-        }
-        if (bval != 0.0){
-            float shadow = bval/16;
-            vec3 sh_col = vec3(
-                               smoothstep(texo.r,0.0,shadow),
-                               smoothstep(texo.g,0.0,shadow),
-                               smoothstep(texo.b,0.0,shadow)
-                               );
-            outputColor = vec4(sh_col,texo.a);
+void main(void){
+    bool shade = false;
+    vec2 uv = gl_FragCoord.xy/iResolution;
+    vec4 this_sam = texture(alpha,uv);
+    if (this_sam.r < 0.5){
+        vec2 pos;
+        vec2 puv;
+        vec4 sam;
+        pos = vec2(gl_FragCoord.x-1.0,gl_FragCoord.y);
+        puv = pos/iResolution;
+        sam = texture(alpha,puv);
+        if (sam.r > 0.5) shade = true;
+        pos = vec2(gl_FragCoord.x-1.0,gl_FragCoord.y-1.0);
+        puv = pos/iResolution;
+        sam = texture(alpha,puv);
+        if (sam.r > 0.5) shade = true;
+        pos = vec2(gl_FragCoord.x,gl_FragCoord.y-1.0);
+        puv = pos/iResolution;
+        sam = texture(alpha,puv);
+        if (sam.r > 0.5) shade = true;
+        if (shade){
+            outputColor = vec4(0.0,0.0,0.0,1.0);
         } else {
-            outputColor = texo;
+            outputColor = this_sam;
         }
-    }
-    
+        } else {
+            outputColor = vec4(vec3(1.0),1.0);
+        }
     
 }

@@ -3,12 +3,12 @@
 
 //========================================================================
 int main( ){
+ 
     ofGLWindowSettings settings;
     settings.setGLVersion(3, 2);
-    settings.width = 1280;
-    settings.height = 720;
+    settings.width = 720;
+    settings.height =720;
     ofCreateWindow(settings);
-    
     // <-------- setup the GL context
 
 	// this kicks off the running of my app

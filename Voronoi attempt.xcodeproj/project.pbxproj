@@ -162,7 +162,23 @@
 		97E50D4D46A31EDC1439DCD0 /* ofxAudioAnalyzer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAudioAnalyzer.cpp; path = ../../../addons/ofxAudioAnalyzer/src/ofxAudioAnalyzer.cpp; sourceTree = SOURCE_ROOT; };
 		97FF78E4ED46F7E9E04B9509 /* v_base_wl_2d.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = v_base_wl_2d.cpp; path = "../../../addons/ofxVoronoi-master/libs/Voro++2D/v_base_wl_2d.cpp"; sourceTree = SOURCE_ROOT; };
 		9852ABB5E21EBF315E8EB616 /* tnt_fortran_array2d.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = tnt_fortran_array2d.h; path = ../../../addons/ofxAudioAnalyzer/libs/essentia/include/essentia/utils/tnt/tnt_fortran_array2d.h; sourceTree = SOURCE_ROOT; };
-		9AB9964A1ED7BF0500E0778B /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = data; path = bin/data; sourceTree = "<group>"; };
+		9A385C181EE91F7400189499 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		9A385C191EE91F7400189499 /* alpha.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = alpha.frag; sourceTree = "<group>"; };
+		9A385C1A1EE91F7400189499 /* alpha.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = alpha.vert; sourceTree = "<group>"; };
+		9A385C1D1EE91F7400189499 /* Verdana.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Verdana.ttf; sourceTree = "<group>"; };
+		9A385C1F1EE91F7400189499 /* icon-group-closed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-group-closed.png"; sourceTree = "<group>"; };
+		9A385C201EE91F7400189499 /* icon-group-open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-group-open.png"; sourceTree = "<group>"; };
+		9A385C211EE91F7400189499 /* icon-radio-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-radio-off.png"; sourceTree = "<group>"; };
+		9A385C221EE91F7400189499 /* icon-radio-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-radio-on.png"; sourceTree = "<group>"; };
+		9A385C231EE91F7400189499 /* picker-rainbow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picker-rainbow.png"; sourceTree = "<group>"; };
+		9A385C241EE91F7400189499 /* shader.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.frag; sourceTree = "<group>"; };
+		9A385C251EE91F7400189499 /* shader.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.vert; sourceTree = "<group>"; };
+		9A385C261EE91F7400189499 /* test.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = test.mp3; sourceTree = "<group>"; };
+		9A385C271EE91F7400189499 /* thickness.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = thickness.frag; sourceTree = "<group>"; };
+		9A385C281EE91F7400189499 /* thickness.geom */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = thickness.geom; sourceTree = "<group>"; };
+		9A385C291EE91F7400189499 /* thickness.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = thickness.vert; sourceTree = "<group>"; };
+		9A385C2A1EE91F7400189499 /* Voronoi attempt.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Voronoi attempt.app"; sourceTree = "<group>"; };
+		9A385C2B1EE91F7400189499 /* Voronoi attemptDebug.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Voronoi attemptDebug.app"; sourceTree = "<group>"; };
 		9B5051062C6A871714E6F5F4 /* ofxDatGuiConstants.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiConstants.h; path = ../../../addons/ofxDatGui/src/core/ofxDatGuiConstants.h; sourceTree = SOURCE_ROOT; };
 		9D55C918270CC85C38C61140 /* graphutils.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = graphutils.h; path = ../../../addons/ofxAudioAnalyzer/libs/essentia/include/essentia/scheduler/graphutils.h; sourceTree = SOURCE_ROOT; };
 		9FC51B01FA0EE5D750125994 /* peak.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = peak.h; path = ../../../addons/ofxAudioAnalyzer/libs/essentia/include/essentia/utils/peak.h; sourceTree = SOURCE_ROOT; };
@@ -518,6 +534,62 @@
 			name = "Voro++2D";
 			sourceTree = "<group>";
 		};
+		9A385C161EE91F7400189499 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				9A385C171EE91F7400189499 /* data */,
+				9A385C2A1EE91F7400189499 /* Voronoi attempt.app */,
+				9A385C2B1EE91F7400189499 /* Voronoi attemptDebug.app */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		9A385C171EE91F7400189499 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				9A385C181EE91F7400189499 /* .gitkeep */,
+				9A385C191EE91F7400189499 /* alpha.frag */,
+				9A385C1A1EE91F7400189499 /* alpha.vert */,
+				9A385C1B1EE91F7400189499 /* ofxbraitsch */,
+				9A385C241EE91F7400189499 /* shader.frag */,
+				9A385C251EE91F7400189499 /* shader.vert */,
+				9A385C261EE91F7400189499 /* test.mp3 */,
+				9A385C271EE91F7400189499 /* thickness.frag */,
+				9A385C281EE91F7400189499 /* thickness.geom */,
+				9A385C291EE91F7400189499 /* thickness.vert */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		9A385C1B1EE91F7400189499 /* ofxbraitsch */ = {
+			isa = PBXGroup;
+			children = (
+				9A385C1C1EE91F7400189499 /* fonts */,
+				9A385C1E1EE91F7400189499 /* ofxdatgui */,
+			);
+			path = ofxbraitsch;
+			sourceTree = "<group>";
+		};
+		9A385C1C1EE91F7400189499 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				9A385C1D1EE91F7400189499 /* Verdana.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		9A385C1E1EE91F7400189499 /* ofxdatgui */ = {
+			isa = PBXGroup;
+			children = (
+				9A385C1F1EE91F7400189499 /* icon-group-closed.png */,
+				9A385C201EE91F7400189499 /* icon-group-open.png */,
+				9A385C211EE91F7400189499 /* icon-radio-off.png */,
+				9A385C221EE91F7400189499 /* icon-radio-on.png */,
+				9A385C231EE91F7400189499 /* picker-rainbow.png */,
+			);
+			path = ofxdatgui;
+			sourceTree = "<group>";
+		};
 		9E4032E9D5449942AD40D131 /* sndfile */ = {
 			isa = PBXGroup;
 			children = (
@@ -685,7 +757,7 @@
 				BB4B014C10F69532006C3DED /* addons */,
 				6948EE371B920CB800B5AC1A /* local_addons */,
 				E4B69B5B0A3A1756003C02F2 /* Voronoi attemptDebug.app */,
-				9AB9964A1ED7BF0500E0778B /* data */,
+				9A385C161EE91F7400189499 /* bin */,
 			);
 			sourceTree = "<group>";
 		};
